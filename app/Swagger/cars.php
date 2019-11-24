@@ -23,7 +23,7 @@
  *   @SWG\Parameter(in="query",name="total_register",description="Filter by total register",type="integer",default="10"),
  *   @SWG\Parameter(in="query",name="exchange_type",description="Filter by exchange_type",type="string",default="Manual"),
  *   @SWG\Parameter(in="query",name="year_of",description="Filter by year of",type="string",default="2014"),
- *   @SWG\Parameter(in="query",name="year_until",description="Filter by year until",type="string",default="2014"),
+ *   @SWG\Parameter(in="query",name="year_until",description="Filter by year until",type="string",default="2015"),
  *   @SWG\Response(response=200, description="successful operation")
  * )
  *
