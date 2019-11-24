@@ -1,0 +1,157 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "APIs Test-Carbel",
+        "contact": {
+            "email": "danielazevedo2k12@gmail.com"
+        },
+        "version": "Beta"
+    },
+    "paths": {
+        "/api/auth": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Authentication in API",
+                "operationId": "carbel-auth",
+                "parameters": [
+                    {
+                        "name": "x-auth-login",
+                        "in": "header",
+                        "description": "user Login",
+                        "required": true,
+                        "type": "string",
+                        "default": "carbel"
+                    },
+                    {
+                        "name": "x-auth-password",
+                        "in": "header",
+                        "description": "user Password",
+                        "required": true,
+                        "type": "string",
+                        "default": "carbel123#"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/api/cars/detail/{sku}": {
+            "get": {
+                "tags": [
+                    "Cars"
+                ],
+                "summary": "Get Cars by SKU",
+                "operationId": "carbel-get-cars-by-sku",
+                "parameters": [
+                    {
+                        "name": "x-auth-token",
+                        "in": "header",
+                        "description": "Auth Token",
+                        "required": true,
+                        "type": "string",
+                        "default": ""
+                    },
+                    {
+                        "name": "sku",
+                        "in": "path",
+                        "description": "Cars Sku",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/api/cars/{type}/{brand}/{model}": {
+            "get": {
+                "tags": [
+                    "Cars"
+                ],
+                "summary": "Filter Cars",
+                "operationId": "carbel-filter-cars",
+                "parameters": [
+                    {
+                        "name": "x-auth-token",
+                        "in": "header",
+                        "description": "Auth Token",
+                        "required": true,
+                        "type": "string",
+                        "default": ""
+                    },
+                    {
+                        "name": "type",
+                        "in": "path",
+                        "description": "Cars type name",
+                        "required": true,
+                        "type": "string",
+                        "default": "Carro"
+                    },
+                    {
+                        "name": "brand",
+                        "in": "path",
+                        "description": "Cars brand name",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "model",
+                        "in": "path",
+                        "description": "Cars Model name",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Filter by page",
+                        "type": "integer",
+                        "default": "1"
+                    },
+                    {
+                        "name": "total_register",
+                        "in": "query",
+                        "description": "Filter by total register",
+                        "type": "integer",
+                        "default": "10"
+                    },
+                    {
+                        "name": "exchange_type",
+                        "in": "query",
+                        "description": "Filter by exchange_type",
+                        "type": "string",
+                        "default": "Manual"
+                    },
+                    {
+                        "name": "year_of",
+                        "in": "query",
+                        "description": "Filter by year of",
+                        "type": "string",
+                        "default": "2014"
+                    },
+                    {
+                        "name": "year_until",
+                        "in": "query",
+                        "description": "Filter by year until",
+                        "type": "string",
+                        "default": "2014"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {}
+}
