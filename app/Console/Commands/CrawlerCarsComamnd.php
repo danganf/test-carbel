@@ -31,7 +31,7 @@ class CrawlerCarsComamnd extends Command
      */
     protected $url = 'https://seminovos.com.br/_BRAND_/_MODELS_?ordenarPor=2&registrosPagina=_LIMIT_&page=_PAGE_';
 
-    private $brands, $limit;
+    private $brands, $limit, $ttNoSync, $pages;
 
     /**
      * Create a new command instance.
@@ -42,8 +42,10 @@ class CrawlerCarsComamnd extends Command
     public function __construct( BrandsRepository $brandsRepository )
     {
         parent::__construct();
-        $this->brands = $brandsRepository;
-        $this->limit  = 30;
+        $this->brands   = $brandsRepository;
+        $this->limit    = 30;
+        $this->ttNoSync = 10;
+        $this->pages     = 2;
     }
 
     /**
@@ -53,12 +55,12 @@ class CrawlerCarsComamnd extends Command
      */
     public function handle()
     {
-        $brands = $this->brands->getNoSync(10);
+        $brands = $this->brands->getNoSync($this->ttNoSync);
         if( $brands ){
             foreach ( $brands as $brand ){
 
                 // PEGANDO X PAGINAS
-                for ( $page=1; $page<=2; $page++ ){
+                for ( $page=1; $page <= $this->pages; $page++ ){
 
                     $url = str_replace(
                         [ '_BRAND_', '_MODELS_', '_LIMIT_', '_PAGE_' ],

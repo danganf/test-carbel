@@ -46,8 +46,12 @@ class CrawlerModelsBrandsComamnd extends Command
      */
     public function handle()
     {
-        //$sourceJson = json_decode( file_get_contents( $this->url ), true );
-        $sourceJson = json_decode( file_get_contents( base_path('app/Console/Commands/source.json') ), true );
+        try {
+            $sourceJson = json_decode( file_get_contents( $this->url ), true );
+        } catch (\Exception $e){
+            dd( $e->getMessage() );
+        }
+
         if( is_array( $sourceJson ) ){
 
             foreach ( $sourceJson as $type ){

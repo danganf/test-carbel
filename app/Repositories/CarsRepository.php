@@ -26,7 +26,7 @@ class CarsRepository extends RepositoryAbstract
 
         $selectRaw = 'cars.*';
         $selectRaw .= ', b.type_name, b.name as brand_name';
-        $selectRaw .= ', m.name as model_name, m.name as model_name, m.json_motor';
+        $selectRaw .= ', m.name as model_name, m.name as model_name';
 
         $this->prepareFilter( $querie, $filterArr );
 
