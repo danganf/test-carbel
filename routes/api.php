@@ -17,6 +17,9 @@ Route::post('/auth', 'AuthController@auth' )->name('auth');
 
 Route::middleware(['valid.token'])->group(function () {
 
+    Route::get('/brands/{id?}', 'BrandsController@filter' );
+    Route::get('/models/{id?}', 'ModelsController@filter' );
+
     Route::prefix('cars')->name('cars.')->group(function () {
         Route::get('/detail/{sku}', 'CarsController@detail' );
         Route::get('/{type}/{brand?}/{model?}', 'CarsController@filter' );

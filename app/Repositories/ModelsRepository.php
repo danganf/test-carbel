@@ -12,6 +12,16 @@ class ModelsRepository extends RepositoryAbstract
         parent::__construct( __CLASS__ );
     }
 
+    public function filter( $filterArr ){
+        $querie = $this->getModel()->with('brands');
+
+        if( !empty( array_get( $filterArr, 'brand_id' ) ) ){
+            $querie->where( 'brand_id', (int) $filterArr['brand_id'] );
+        }
+
+        return $querie->paginate(10)->toArray();
+    }
+
     public function createOrUpdate(JsonAbstract $jsonValues, $id=null)
     {
         $instanceModel = $this->getModel();

@@ -20,6 +20,10 @@ class BrandsRepository extends RepositoryAbstract
         return $this->getModel()->where('sync',0)->where('id',$brandID)->update( [ 'sync' => 1 ] );
     }
 
+    public function filter(){
+        return $this->getModel()->paginate(10)->toArray();
+    }
+
     public function createOrUpdate(JsonAbstract $jsonValues, $id=null)
     {
         $instanceModel = $this->getModel();

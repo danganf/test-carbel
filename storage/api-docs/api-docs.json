@@ -40,6 +40,68 @@
                 }
             }
         },
+        "/api/brands/{id}": {
+            "get": {
+                "tags": [
+                    "Brands"
+                ],
+                "summary": "Get Brand by ID",
+                "operationId": "carbel-get-brands-by-id",
+                "parameters": [
+                    {
+                        "name": "x-auth-token",
+                        "in": "header",
+                        "description": "Auth Token",
+                        "required": true,
+                        "type": "string",
+                        "default": ""
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Brand ID",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/api/brands": {
+            "get": {
+                "tags": [
+                    "Brands"
+                ],
+                "summary": "Filter Brands",
+                "operationId": "carbel-filter-brands",
+                "parameters": [
+                    {
+                        "name": "x-auth-token",
+                        "in": "header",
+                        "description": "Auth Token",
+                        "required": true,
+                        "type": "string",
+                        "default": ""
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Filter by page",
+                        "type": "integer",
+                        "default": "1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
         "/api/cars/detail/{sku}": {
             "get": {
                 "tags": [
@@ -143,6 +205,75 @@
                         "description": "Filter by year until",
                         "type": "string",
                         "default": "2014"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/api/models/{id}": {
+            "get": {
+                "tags": [
+                    "Models"
+                ],
+                "summary": "Get Model by ID",
+                "operationId": "carbel-get-model-by-id",
+                "parameters": [
+                    {
+                        "name": "x-auth-token",
+                        "in": "header",
+                        "description": "Auth Token",
+                        "required": true,
+                        "type": "string",
+                        "default": ""
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Model ID",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/api/models": {
+            "get": {
+                "tags": [
+                    "Models"
+                ],
+                "summary": "Filter Models",
+                "operationId": "carbel-filter-models",
+                "parameters": [
+                    {
+                        "name": "x-auth-token",
+                        "in": "header",
+                        "description": "Auth Token",
+                        "required": true,
+                        "type": "string",
+                        "default": ""
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Filter by page",
+                        "type": "integer",
+                        "default": "1"
+                    },
+                    {
+                        "name": "brand_id",
+                        "in": "query",
+                        "description": "Filter by brand_id",
+                        "type": "integer",
+                        "default": ""
                     }
                 ],
                 "responses": {
