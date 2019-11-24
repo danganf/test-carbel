@@ -61,7 +61,7 @@ Esse processo irá demorar um pouco... Ao final, a tabela `cars` estará populad
 
 ## Endpoints
 
-Segue abaixo o link da documentation para consumo:
+Segue abaixo o link da documentação para consumo:
 
 > http://_DNS_/api/documentation
 
