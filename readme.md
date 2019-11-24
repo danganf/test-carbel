@@ -14,6 +14,8 @@ Execute os seguintes passos abaixo, em um console, após clonar esse repositóri
 
 > composer install
 
+> cp .env.example .env
+
 > php artisan key:generate
 
 > php artisan vendor:publish --provider "L5Swagger\L5SwaggerServiceProvider"
