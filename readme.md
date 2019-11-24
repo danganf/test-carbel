@@ -20,7 +20,7 @@ Execute os seguintes passos abaixo, em um console, após clonar esse repositóri
 
 > php artisan l5-swagger:generate
 
-Agora, configure o arquivo `app/database.php` e seto o nome da base de dados.
+Agora, configure o arquivo `app/database.php` e defina o nome da base de dados.
 Lembre-se que o usuário necessitará de acessos *root* para criar as tabelas
 
 > php artisan migrate:install
@@ -33,7 +33,7 @@ Se ocorreu tudo bem, as tabelas foram criadas no banco definido no `app/database
 
 > php artisan carbel:crawler-models-brands
 
-Esse processo pode demorar um pouco... Ao final desse processo, as tabelas `brands` e `models` estaram populadas.
+Esse processo pode demorar um pouco... Ao final, as tabelas `brands` e `models` estaram populadas.
 
 ## Fazendo o crawler dos carros
 
@@ -43,15 +43,17 @@ Antes de rodar, alguns aviso:
     pelo job abaixo. ZERO para pedente e UM para processado;
     
 2 - Cada executação do job, ele pegará 10 registros da `brands` e processa. Para cada registros, 
-    ele varre apenas 3 paginas (para agilizar o processo de validação). Ambas as variáveis
+    ele varre apenas 2 paginas (para agilizar o processo de validação). Ambas as variáveis
     podem ser editadas no arquivo `app/Console/Commands/CrawlerCarsComamnd.php`;
 
 3 - Em meus testes, algumas chamadas ao site fonte falhou. Eu tratei essa falha e, se ocorrer
-    durante o processo, basta executar o job novamente que ele não incluirá o que já fora 
-    processado;
+    durante o processo, basta executar o job novamente que ele não incluirá os que já foram 
+    processados;
     
 4 - O job mostrará, em execução, a pagina q estará sendo consumida para facilitar o
     acompanhamento;
+          
+Agora, execute o command abaixo:          
           
 > php artisan carbel:crawler-car
 

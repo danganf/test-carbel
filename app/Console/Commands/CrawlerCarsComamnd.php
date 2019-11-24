@@ -42,10 +42,16 @@ class CrawlerCarsComamnd extends Command
     public function __construct( BrandsRepository $brandsRepository )
     {
         parent::__construct();
-        $this->brands   = $brandsRepository;
-        $this->limit    = 30;
+        $this->brands = $brandsRepository;
+
+        //REGISTROS POR PAGINA RETORNADO
+        $this->limit = 30;
+
+        //NUMERO DE BRANDS RETORNADOS POR EXECUÇÃO
         $this->ttNoSync = 10;
-        $this->pages     = 2;
+
+        //NUMERO DE PAGINAS VARRIDAS POR BRAND
+        $this->pages = 2;
     }
 
     /**
@@ -168,30 +174,56 @@ class CrawlerCarsComamnd extends Command
         }
     }
 
+    /**
+     * @param $prod
+     * @param $key
+     * @param $domElement
+     */
     private function getTagP( &$prod, $key, $domElement ){
         foreach ( $domElement->getElementsByTagName('p') as $item ){
             $prod[$key][ $item->getAttribute('class') ] = trim( strip_tags($item->nodeValue) );
         }
     }
 
+    /**
+     * @param $prod
+     * @param $key
+     * @param $domElement
+     */
     private function getTaglink( &$prod, $key, $domElement ){
         foreach ( $domElement->getElementsByTagName('link') as $item ){
             $prod[$key][ $item->getAttribute('itemprop') ] = str_replace('https://schema.org/','',$item->getAttribute('href'));
         }
     }
 
+    /**
+     * @param $prod
+     * @param $key
+     * @param $domElement
+     */
     private function getTagSpan( &$prod, $key, $domElement ){
         foreach ( $domElement->getElementsByTagName('span') as $item ){
             $prod[$key][ $item->getAttribute('itemprop') ] = $item->nodeValue;
         }
     }
 
+    /**
+     * @param $prod
+     * @param $key
+     * @param $domElement
+     */
     private function getTagMeta( &$prod, $key, $domElement ){
         foreach ( $domElement->getElementsByTagName('meta') as $item ){
             $prod[$key][ $item->getAttribute('itemprop') ] = $item->getAttribute('content');
         }
     }
 
+    /**
+     * TRATANDO NOME PARA SER USADO NA URL
+     * CONVERTE "Sedan Superior" em "sedan-superior"
+     * @param $string
+     * @return mixed
+     */
     private function prepareString($string){
         return str_replace(' ','-',strtolower( $string ));
     }

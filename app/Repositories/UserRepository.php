@@ -12,6 +12,11 @@ class UserRepository extends RepositoryAbstract
         parent::__construct( __CLASS__ );
     }
 
+    /**
+     * @param $login
+     * @param $pass
+     * @return bool
+     */
     public function auth( $login, $pass ){
         return $login == 'carbel' && $pass=='carbel123#' ? TRUE : FALSE;
     }

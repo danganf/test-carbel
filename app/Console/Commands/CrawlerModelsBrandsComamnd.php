@@ -46,6 +46,7 @@ class CrawlerModelsBrandsComamnd extends Command
      */
     public function handle()
     {
+        // TRY/CATCH NECESSARIO PARA O CASO DA CHAMADA EXTERNA FALHAR OU DEMORAR
         try {
             $sourceJson = json_decode( file_get_contents( $this->url ), true );
         } catch (\Exception $e){

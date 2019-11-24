@@ -14,6 +14,10 @@ class CarsRepository extends RepositoryAbstract
         parent::__construct( __CLASS__ );
     }
 
+    /**
+     * @param $filterArr
+     * @return mixed
+     */
     public function filter( $filterArr ){
 
         $querie = $this->getModel()
@@ -36,6 +40,11 @@ class CarsRepository extends RepositoryAbstract
                     ->toArray();
     }
 
+    /**
+     * TRATANDO FILTROS RECEBIDOS PELO REQUEST
+     * @param Builder $querie
+     * @param $filterArr
+     */
     private function prepareFilter( Builder &$querie, $filterArr ){
         $where = "b.type_name='".$filterArr['type']."'";
 
@@ -57,6 +66,10 @@ class CarsRepository extends RepositoryAbstract
         $querie->whereRaw( $where );
     }
 
+    /**
+     * @param JsonAbstract $jsonValues
+     * @param null $id
+     */
     public function createOrUpdate(JsonAbstract $jsonValues, $id=null)
     {
         foreach ( $jsonValues->toArray() as $row ){
